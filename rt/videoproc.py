@@ -1,4 +1,4 @@
-import subprocess, datetime, sys, base64
+import subprocess, datetime, sys, base64, requests
 import cv2
 
 PROC_FPS = 0.5
@@ -32,6 +32,16 @@ def process(name):
             print ms, ms_since_epoch
             data = cv2.imencode('.png', img)[1]
             encoded = base64.encodestring(data)
+            params = {
+                "api_key": "MlNqKOB0gvIJ9dBz",
+                "api_secret": "CWf5gIEQqoo59fRy",
+                "jobs": "scene_understanding_3",
+                "base64": encoded
+            }
+            resp = requests.request('POST', 'https://rekognition.com/func/api/', data = params)
+            if resp.status_code == 200:
+                print resp.content
+            return
         if not all(cap.grab() for i in xrange(step)):
             break
     cap.release()
