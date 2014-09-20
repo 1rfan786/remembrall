@@ -17,8 +17,13 @@ app.controller('MainPanelCtrl', function($scope, testDataFactory) {
   };
 });
 
-app.controller('SideBarCtrl', function($scope, $http, searchResultsFactory) {
+app.controller('SideBarCtrl', function($scope, $http, searchResultsFactory, editorFactory) {
   $scope.searchResults = searchResultsFactory.results;
+
+  $scope.editor = function(clipUrl) {
+    editorFactory.isVisible = true;
+    editorFactory.openedClip = clipUrl;
+  };
  
   $scope.search = function(keywordString, timeString) {
     var url = ''; // TODO Build with keywordString and timeString.
@@ -28,6 +33,13 @@ app.controller('SideBarCtrl', function($scope, $http, searchResultsFactory) {
       $scope.searchResults = response;
     });
   };
+});
+
+app.controller('EditorCtrl', function($scope, $http, editorFactory) {
+  $scope.closeEditor = function() {
+    editorFactory.isVisible = false;
+  };
+
   $scope.getByTimeRange = function(timeString) {
     var url = ''; // TODO Build with keywordString and timeString.
     $http.get(url).success(function(response) {
@@ -36,9 +48,23 @@ app.controller('SideBarCtrl', function($scope, $http, searchResultsFactory) {
   };
 });
 
+app.factory('editorFactory', function() {
+  return {
+    isVisible: false,
+    openedClip: ''
+  };
+});
+
+app.factory('savedFactory', function() {
+  return {
+    saved: [] 
+  };
+});
+
 app.factory('searchResultsFactory', function() {
   return {
-    results: {} 
+    results: [{thumbnail: '../media/photo.JPG', video: 'clip.mp4'}, 
+              {thumbnail: '../media/photo2.JPG', video: 'clip2.mp4'}] 
   };
 });
 
