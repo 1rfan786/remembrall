@@ -26,9 +26,9 @@ def get_start(name):
     return time
 
 def process(name):
-    name = os.path.join(os.getcwd(), '../run/data', name)
-    start = get_start(name)
-    cap = cv2.VideoCapture(name)
+    fullname = os.path.join(os.getcwd(), '../run/data', name)
+    start = get_start(fullname)
+    cap = cv2.VideoCapture(fullname)
     fps = cap.get(cv2.cv.CV_CAP_PROP_FPS)
     step = max(1, int(round(fps / PROC_FPS)))
     while cap.isOpened():
@@ -52,10 +52,10 @@ def process(name):
         if resp.status_code == 200:
             content = json.loads(resp.content)
             matches = content['scene_understanding']['matches']
-            store = {'matches': matches, 'time': frametime}
+            store = {'matches': matches, 'time': frametime, 'filename': name}
             idn = '%s-%d' % (frametime.strftime('%Y%m%d-%H%M%S'), fn)
             es.index(index = 'rememberall', doc_type = 'frame', id = idn, body = store)
-            print matches
+            print ' [x] Processed %s' % idn
         if not all(cap.grab() for i in xrange(step)):
             break
     cap.release()
