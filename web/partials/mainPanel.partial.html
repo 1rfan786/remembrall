@@ -7,9 +7,11 @@
 
   <div class="mainpanel-content">
     <ul>
-      <li class="entry-frame" data-ng-repeat="resource in journal" 
-          data-ng-style="coverStyle(resource.thumbnail)">
-      </li>
+      <span data-ng-repeat="resource in journal">
+        <li class="entry-frame" data-ng-style="coverStyle(resource.thumbnail)">
+          <span class="entry-title-box"></span>
+        </li>
+      </span>
     </ul>
   </div>
 
