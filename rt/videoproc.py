@@ -2,6 +2,7 @@ import subprocess, datetime, sys, base64
 import cv2
 
 PROC_FPS = 0.5
+MAXDIM = 800 # Rekognition API resolution limit
 
 epoch = datetime.datetime.utcfromtimestamp(0)
 
@@ -23,6 +24,10 @@ def process(name):
         ms = cap.get(cv2.cv.CV_CAP_PROP_POS_MSEC)
         ms_since_epoch = start + long(ms)
         ret, img = cap.retrieve()
+        height, width, depth = img.shape
+        scaleFactor = min(float(MAXDIM) / height, float(MAXDIM) / width)
+        newHeight, newWidth = int(height * scaleFactor), int(width * scaleFactor)
+        img = cv2.resize(img, (newWidth, newHeight))
         if ret:
             print ms, ms_since_epoch
             data = cv2.imencode('.png', img)[1]
