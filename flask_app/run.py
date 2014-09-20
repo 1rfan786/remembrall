@@ -1,14 +1,26 @@
 import os
 from flask import Flask, request, redirect, url_for, jsonify
 from werkzeug import secure_filename
-import pika
+rmq_disabled = False
+try:
+    import pika
+    from pika.exceptions import AMQPConnectionError
+except ImportError:
+    rmq_disabled = True
 import atexit
 
-connection = pika.BlockingConnection(pika.ConnectionParameters(
-                   'localhost'))
-atexit.register(lambda: connection.close())
-channel = connection.channel()
-channel.queue_declare('files_queue', durable = True)
+if not rmq_disabled:
+    try:
+        connection = pika.BlockingConnection(pika.ConnectionParameters(
+            'localhost'))
+        atexit.register(lambda: connection.close())
+        channel = connection.channel()
+        channel.queue_declare('files_queue', durable = True)
+    except AMQPConnectionError:
+        rmq_disabled = True
+
+if rmq_disabled:
+    print 'WARN: RMQ disabled'
 
 UPLOAD_FOLDER = os.getcwd() + '/../run/data'
 
@@ -21,12 +33,13 @@ def upload_file():
         if file:
             filename = secure_filename(file.filename)
             file.save(os.path.join(app.config['UPLOAD_FOLDER'], filename))
-            channel.basic_publish(exchange='',
-                    routing_key="files_queue",
-                    body=filename,
-                    properties=pika.BasicProperties(
-                        delivery_mode = 2, # make message persistent
-                    ))
+            if not rmq_disabled:
+                channel.basic_publish(exchange='',
+                        routing_key="files_queue",
+                        body=filename,
+                        properties=pika.BasicProperties(
+                            delivery_mode = 2, # make message persistent
+                        ))
             return '%s\n' % jsonify({'result': 'success'})
 
 if __name__ == '__main__':

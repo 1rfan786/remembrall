@@ -112,12 +112,20 @@ body {
         overflow-y: auto;
         
         .entry-frame {
+          height: 270px;
+          display: inline-block;
+          margin-right: 15px;
+          margin-bottom: 15px;
+          width: 480px;
+          background-color: $dark-grey;
+
+          .entry-title-box {
             margin-right: 15px;
             margin-bottom: 15px;
-            width: 480px;
             height: 270px;
-            display: inline-block;
+            width: 480px;
             background-color: $dark-grey;
+          } 
         }
     }
    
@@ -134,9 +142,6 @@ body {
     color: #fff;
     font-family: $sans;
     
-    .active {
-        color: $blue;
-    }
     
     .active {
         color: $blue;

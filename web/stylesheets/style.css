@@ -68,15 +68,23 @@ body {
 }
 /* line 114, ../sass/style.scss */
 .main-panel .mainpanel-content .entry-frame {
+  height: 270px;
+  display: inline-block;
   margin-right: 15px;
   margin-bottom: 15px;
   width: 480px;
+  background-color: #262626;
+}
+/* line 122, ../sass/style.scss */
+.main-panel .mainpanel-content .entry-frame .entry-title-box {
+  margin-right: 15px;
+  margin-bottom: 15px;
   height: 270px;
-  display: inline-block;
+  width: 480px;
   background-color: #262626;
 }
 
-/* line 127, ../sass/style.scss */
+/* line 135, ../sass/style.scss */
 .sidebar {
   display: inline;
   float: right;
@@ -86,33 +94,29 @@ body {
   color: #fff;
   font-family: sans-serif;
 }
-/* line 137, ../sass/style.scss */
-.sidebar .active {
-  color: #0079ff;
-}
-/* line 141, ../sass/style.scss */
-.sidebar .active {
-  color: #0079ff;
-}
 /* line 146, ../sass/style.scss */
+.sidebar .active {
+  color: #0079ff;
+}
+/* line 151, ../sass/style.scss */
 .sidebar ul {
   margin: 0 0;
 }
-/* line 150, ../sass/style.scss */
+/* line 155, ../sass/style.scss */
 .sidebar li {
   display: inline;
   padding: 50px;
 }
-/* line 154, ../sass/style.scss */
+/* line 159, ../sass/style.scss */
 .sidebar li i {
   font-size: 1.2em;
   margin-right: 3px;
 }
-/* line 160, ../sass/style.scss */
+/* line 165, ../sass/style.scss */
 .sidebar .search-content {
   padding: 20px;
 }
-/* line 163, ../sass/style.scss */
+/* line 168, ../sass/style.scss */
 .sidebar .search-content form fieldset input {
   padding: 5px;
   color: #262626;
@@ -120,16 +124,16 @@ body {
   -moz-border-radius: 5px;
   border-radius: 5px;
 }
-/* line 168, ../sass/style.scss */
+/* line 173, ../sass/style.scss */
 .sidebar .search-content form fieldset input:focus {
   outline: none;
   border: 2px solid #0079ff;
 }
-/* line 175, ../sass/style.scss */
+/* line 180, ../sass/style.scss */
 .sidebar .searchinput {
   width: 300px;
 }
-/* line 179, ../sass/style.scss */
+/* line 184, ../sass/style.scss */
 .sidebar .searchsubmit {
   width: 300px;
   color: #fff;

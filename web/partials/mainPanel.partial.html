@@ -1,15 +1,19 @@
 
 <div data-ng-controller="MainPanelCtrl" class="main-panel">
-    <div class="mainpanel-header">
-        <h1>RememberAll</h1>
-        <a href="#"><i class="fa fa-plus"></i>New Entry</a>
-    </div>
-    
-    <div class="mainpanel-content">
-        <ul>
-            <li class="entry-frame" data-ng-repeat="resource in savedLib" style="background-image: url({{resource.frame}}); background-size: cover;">
-            </li>
-        </ul>
-    </div>
-    
+  <div class="mainpanel-header">
+    <h1>RememberAll</h1>
+    <a href="#"><i class="fa fa-plus"></i>New Entry</a>
+  </div>
+
+  <div class="mainpanel-content">
+    <ul>
+      <span data-ng-repeat="resource in journal">
+        <li class="entry-frame" data-ng-style="coverStyle(resource.thumbnail)">
+          <span class="entry-title-box"></span>
+        </li>
+      </span>
+    </ul>
+  </div>
+
+
 </div>
