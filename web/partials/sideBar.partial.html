@@ -7,8 +7,19 @@
     <div class="sidebarcontent">
         <div class="search-content">
             <form>
-                <input type="keyword">
-                <input type="timestamp">
+                <fieldset>
+                    <label>Search by Keyword:</label>
+                    <input id="keyword" type="text" class="searchinput" placeholder="e.g. 'Math Lecture'">
+                </fieldset>
+                <br/>
+                <fieldset>
+                    <label>Search by date and time</label>
+                    <input id="time" type="text" class="searchinput" placeholder="e.g. September 20th, 2014">
+                </fieldset>
+                <br/>
+                <input type="submit" value="Search" class="searchsubmit">
+                
+                
             </form>
         </div>
         

@@ -35,9 +35,10 @@ body {
 .main-panel .mainpanel-header h1 {
   display: inline;
   font-family: Helvetica;
-  font-size: 1.5em;
+  font-size: 1.6em;
+  font-weight: bold;
 }
-/* line 84, ../sass/style.scss */
+/* line 85, ../sass/style.scss */
 .main-panel .mainpanel-header a {
   margin-top: -5px;
   text-decoration: none;
@@ -49,18 +50,23 @@ body {
   -moz-border-radius: 5px;
   border-radius: 5px;
 }
-/* line 95, ../sass/style.scss */
+/* line 96, ../sass/style.scss */
 .main-panel .mainpanel-header a:hover {
   background: #0079ff;
   color: #fff;
 }
-/* line 103, ../sass/style.scss */
+/* line 101, ../sass/style.scss */
+.main-panel .mainpanel-header a i {
+  font-size: 1.2em;
+  margin-right: 3px;
+}
+/* line 109, ../sass/style.scss */
 .main-panel .mainpanel-content {
   padding: 40px;
   flex: auto;
   overflow-y: auto;
 }
-/* line 108, ../sass/style.scss */
+/* line 114, ../sass/style.scss */
 .main-panel .mainpanel-content .entry-frame {
   margin-right: 15px;
   margin-bottom: 15px;
@@ -70,7 +76,7 @@ body {
   background-color: #262626;
 }
 
-/* line 121, ../sass/style.scss */
+/* line 127, ../sass/style.scss */
 .sidebar {
   display: inline;
   float: right;
@@ -80,25 +86,56 @@ body {
   color: #fff;
   font-family: sans-serif;
 }
-/* line 131, ../sass/style.scss */
+/* line 137, ../sass/style.scss */
 .sidebar .active {
   color: #0079ff;
 }
-/* line 135, ../sass/style.scss */
+/* line 141, ../sass/style.scss */
 .sidebar .active {
   color: #0079ff;
 }
-/* line 139, ../sass/style.scss */
+/* line 146, ../sass/style.scss */
 .sidebar ul {
   margin: 25px 0;
 }
-/* line 143, ../sass/style.scss */
+/* line 150, ../sass/style.scss */
 .sidebar li {
   display: inline;
   padding: 50px;
 }
-/* line 147, ../sass/style.scss */
+/* line 154, ../sass/style.scss */
 .sidebar li i {
   font-size: 1.2em;
   margin-right: 3px;
+}
+/* line 160, ../sass/style.scss */
+.sidebar .search-content {
+  padding: 20px;
+}
+/* line 163, ../sass/style.scss */
+.sidebar .search-content form fieldset input {
+  padding: 5px;
+  -webkit-border-radius: 100px;
+  -moz-border-radius: 100px;
+  border-radius: 100px;
+}
+/* line 167, ../sass/style.scss */
+.sidebar .search-content form fieldset input:focus {
+  outline: none;
+  border: 2px solid #0079ff;
+}
+/* line 174, ../sass/style.scss */
+.sidebar .searchinput {
+  width: 300px;
+}
+/* line 178, ../sass/style.scss */
+.sidebar .searchsubmit {
+  width: 300px;
+  color: #fff;
+  border: 0px;
+  background-color: #0079ff;
+  padding: 7px;
+  -webkit-border-radius: 5px;
+  -moz-border-radius: 5px;
+  border-radius: 5px;
 }
