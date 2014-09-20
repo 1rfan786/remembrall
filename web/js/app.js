@@ -4,7 +4,6 @@ app.controller('MainPanelCtrl', function($scope, testDataFactory) {
   $scope.journal = testDataFactory.journal;
 
   $scope.coverStyle = function(fileURL) {
-    console.log(fileURL);
     if(!(typeof fileURL === 'undefined')) {
       return {
         'background-image': 'url(' + fileURL + ')',
@@ -22,7 +21,7 @@ app.factory('testDataFactory', function() {
   return { 
     journal: [
       {title: 'entry0', thumbnail: '../media/photo.JPG',
-       content: [{type: 'video', value: 'clip.mp4'}, {type: 'text', value: 'my paragraph']},
+       content: [{type: 'video', value: 'clip.mp4'}, {type: 'text', value: 'my paragraph'}]},
       {title: 'entry2', thumbnail: '../media/photo2.JPG',
        content: [{type: 'text', value: 'one fish'},
                  {type: 'video', value: 'clip2.mp4'}, 
