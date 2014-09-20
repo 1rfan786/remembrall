@@ -34,6 +34,8 @@ app.factory('testDataFactory', function() {
     ]
   };
 });
+        
+        
 
 
 app.directive('mainpanel', function() {

@@ -1,5 +1,5 @@
 @import url(http://fonts.googleapis.com/css?family=Merriweather);
-/* line 39, ../sass/style.scss */
+/* line 40, ../sass/style.scss */
 * {
   -webkit-box-sizing: border-box;
   -moz-box-sizing: border-box;
@@ -8,13 +8,13 @@
   padding: 0;
 }
 
-/* line 46, ../sass/style.scss */
+/* line 47, ../sass/style.scss */
 body {
   margin: 0;
   padding: 0;
 }
 
-/* line 60, ../sass/style.scss */
+/* line 61, ../sass/style.scss */
 .main-panel {
   display: flex;
   float: left;
@@ -24,21 +24,21 @@ body {
   -webkit-flex-direction: column;
   flex-direction: column;
 }
-/* line 72, ../sass/style.scss */
+/* line 73, ../sass/style.scss */
 .main-panel .mainpanel-header {
   font-family: sans-serif;
   padding: 20px;
   border-bottom: 1px solid #ebebeb;
   flex: 0 0 auto;
 }
-/* line 78, ../sass/style.scss */
+/* line 79, ../sass/style.scss */
 .main-panel .mainpanel-header h1 {
   display: inline;
   font-family: Helvetica;
   font-size: 1.6em;
   font-weight: bold;
 }
-/* line 85, ../sass/style.scss */
+/* line 86, ../sass/style.scss */
 .main-panel .mainpanel-header a {
   margin-top: -5px;
   text-decoration: none;
@@ -50,23 +50,23 @@ body {
   -moz-border-radius: 5px;
   border-radius: 5px;
 }
-/* line 96, ../sass/style.scss */
+/* line 97, ../sass/style.scss */
 .main-panel .mainpanel-header a:hover {
   background: #0079ff;
   color: #fff;
 }
-/* line 101, ../sass/style.scss */
+/* line 102, ../sass/style.scss */
 .main-panel .mainpanel-header a i {
   font-size: 1.2em;
   margin-right: 3px;
 }
-/* line 109, ../sass/style.scss */
+/* line 110, ../sass/style.scss */
 .main-panel .mainpanel-content {
   padding: 40px;
   flex: auto;
   overflow-y: auto;
 }
-/* line 114, ../sass/style.scss */
+/* line 115, ../sass/style.scss */
 .main-panel .mainpanel-content .entry-frame {
   height: 270px;
   display: inline-block;
@@ -75,7 +75,7 @@ body {
   width: 480px;
   background-color: #262626;
 }
-/* line 122, ../sass/style.scss */
+/* line 123, ../sass/style.scss */
 .main-panel .mainpanel-content .entry-frame .entry-title-box {
   margin-right: 15px;
   margin-bottom: 15px;
@@ -84,7 +84,7 @@ body {
   background-color: #262626;
 }
 
-/* line 135, ../sass/style.scss */
+/* line 136, ../sass/style.scss */
 .sidebar {
   display: inline;
   float: right;
@@ -94,29 +94,49 @@ body {
   color: #fff;
   font-family: sans-serif;
 }
-/* line 146, ../sass/style.scss */
+/* line 147, ../sass/style.scss */
 .sidebar .active {
-  color: #0079ff;
+  border-bottom: 3px solid #0079ff;
+  -webkit-border-radius: 0;
+  -moz-border-radius: 0;
+  border-radius: 0;
 }
-/* line 151, ../sass/style.scss */
+/* line 152, ../sass/style.scss */
 .sidebar ul {
   margin: 0 0;
 }
-/* line 155, ../sass/style.scss */
+/* line 156, ../sass/style.scss */
 .sidebar li {
   display: inline;
-  padding: 50px;
+  padding: 20px 50px;
 }
-/* line 159, ../sass/style.scss */
+/* line 160, ../sass/style.scss */
 .sidebar li i {
   font-size: 1.2em;
   margin-right: 3px;
 }
 /* line 165, ../sass/style.scss */
+.sidebar li a {
+  color: #fff;
+}
+/* line 167, ../sass/style.scss */
+.sidebar li a:hover {
+  background-color: #404040;
+}
+/* line 174, ../sass/style.scss */
+.sidebar .nav-pills > li.active > a, .sidebar .nav-pills > li.active > a:hover, .sidebar .nav-pills > li.active > a:focus {
+  background: transparent;
+  color: #0079ff;
+}
+/* line 179, ../sass/style.scss */
+.sidebar .nav-pills > li > a:hover {
+  background: transparent;
+}
+/* line 183, ../sass/style.scss */
 .sidebar .search-content {
   padding: 20px;
 }
-/* line 168, ../sass/style.scss */
+/* line 186, ../sass/style.scss */
 .sidebar .search-content form fieldset input {
   padding: 5px;
   color: #262626;
@@ -124,18 +144,18 @@ body {
   -moz-border-radius: 5px;
   border-radius: 5px;
 }
-/* line 173, ../sass/style.scss */
+/* line 191, ../sass/style.scss */
 .sidebar .search-content form fieldset input:focus {
   outline: none;
   border: 2px solid #0079ff;
 }
-/* line 180, ../sass/style.scss */
+/* line 198, ../sass/style.scss */
 .sidebar .searchinput {
-  width: 300px;
+  width: 100%;
 }
-/* line 184, ../sass/style.scss */
+/* line 202, ../sass/style.scss */
 .sidebar .searchsubmit {
-  width: 300px;
+  width: 100%;
   color: #fff;
   border: 0px;
   background-color: #0079ff;
