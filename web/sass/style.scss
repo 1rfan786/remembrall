@@ -1,0 +1,35 @@
+
+
+// Variables and Mixins
+@mixin border-radius($radius) {
+  -webkit-border-radius: $radius;
+  -moz-border-radius: $radius;
+  border-radius: $radius;
+}
+
+@mixin flexbox() {
+  display: -webkit-box;
+  display: -moz-box;
+  display: -ms-flexbox;
+  display: -webkit-flex;
+  display: flex;
+}
+
+@mixin flex($grow, $shrink, $basis){
+  -webkit-flex:$grow $shrink $basis;
+  -moz-flex:$grow $shrink $basis;
+  flex:$grow $shrink $basis;
+}
+
+@mixin box-sizing($sizing) {
+  -webkit-box-sizing: $sizing;
+  -moz-box-sizing: $sizing;
+  box-sizing: $sizing;
+}
+
+// Styling
+
+* {
+    @include box-sizing{border-box};
+}
+
