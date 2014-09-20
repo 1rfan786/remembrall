@@ -1,4 +1,4 @@
-import subprocess, datetime, sys
+import subprocess, datetime, sys, base64
 import cv2
 
 PROC_FPS = 0.5
@@ -25,7 +25,8 @@ def process(name):
         ret, img = cap.retrieve()
         if ret:
             print ms, ms_since_epoch
-            pass # do something with img
+            data = cv2.imencode('.png', img)[1]
+            encoded = base64.encodestring(data)
         if not all(cap.grab() for i in xrange(step)):
             break
     cap.release()
