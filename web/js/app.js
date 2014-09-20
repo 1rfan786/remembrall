@@ -12,13 +12,13 @@ app.controller('SideBarCtrl', function($scope) {
 app.directive('main-panel', function() {
   return {
     restrict: 'E',
-    templateUrl: '../mainPanel.partial.html'
+    templateUrl: '../partials/mainPanel.partial.html'
   };
 });
 
 app.directive('side-bar', function() {
   return {
     restrict: 'E',
-    templateUrl: '../sideBar.partial.html'
+    templateUrl: '../partials/sideBar.partial.html'
   };
 });
