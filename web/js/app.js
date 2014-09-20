@@ -1,9 +1,16 @@
 var app = angular.module('rememberall', []);
 
 app.controller('MainPanelCtrl', function($scope, testDataFactory) {
-  $scope.savedLib = testDataFactory.savedLib;
-  $scope.notUndefined = function(toBeTested) {
-    return !(typeof toBeTested === 'undefined');
+  $scope.journal = testDataFactory.journal;
+
+  $scope.coverStyle = function(fileURL) {
+    console.log(fileURL);
+    if(!(typeof fileURL === 'undefined')) {
+      return {
+        'background-image': 'url(' + fileURL + ')',
+        'background-size': 'cover'
+      };
+    }
   };
 });
 
@@ -13,12 +20,17 @@ app.controller('SideBarCtrl', function($scope) {
 
 app.factory('testDataFactory', function() {
   return { 
-    savedLib: [
-      {name: 'entry1', frame: '../media/photo.JPG', video: 'clip.mp4'},
-      {name: 'entry2', frame: '../media/photo2.JPG', video: 'clip2.mp4'},
-        {name: 'entry3', frame: '../media/photo3.PNG'},
-        {name: 'entry4', frame: '../media/photo4.JPG'},
-        
+    journal: [
+      {title: 'entry0', thumbnail: '../media/photo.JPG',
+       content: [{type: 'video', value: 'clip.mp4'}, {type: 'text', value: 'my paragraph']},
+      {title: 'entry2', thumbnail: '../media/photo2.JPG',
+       content: [{type: 'text', value: 'one fish'},
+                 {type: 'video', value: 'clip2.mp4'}, 
+                 {type: 'text', value: 'two fish'}]},
+      {title: 'entry3', thumbnail: '../media/photo3.png'},
+      {title: 'entry1'},
+      {title: 'entry4', thumbnail: '../media/photo4.jpg'},
+      {title: 'entry5'},
     ]
   };
 });

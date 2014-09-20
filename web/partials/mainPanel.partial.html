@@ -7,9 +7,8 @@
 
   <div class="mainpanel-content">
     <ul>
-      <li class="entry-frame" data-ng-repeat="resource in savedLib" style="background-image: url({{resource.frame}}); background-size: cover;">
-      <img data-ng-if="notUndefined(resource.frame)" 
-      data-ng-src="{{resource.frame}}">
+      <li class="entry-frame" data-ng-repeat="resource in journal" 
+          data-ng-style="coverStyle(resource.thumbnail)">
       </li>
     </ul>
   </div>
