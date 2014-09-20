@@ -11,6 +11,10 @@ app.controller('MainPanelCtrl', function($scope, testDataFactory) {
       };
     }
   };
+
+  $scope.hasThumbnail = function(url) {
+    return !(typeof url === 'undefined');
+  };
 });
 
 app.controller('SideBarCtrl', function($scope) {
@@ -20,16 +24,22 @@ app.controller('SideBarCtrl', function($scope) {
 app.factory('testDataFactory', function() {
   return { 
     journal: [
-      {title: 'entry0', thumbnail: '../media/photo.JPG',
+      {title: 'Anish Hard at Work', date: 'September 20, 2014 11:35', 
+       thumbnail: '../media/photo.JPG',
        content: [{type: 'video', value: 'clip.mp4'}, {type: 'text', value: 'my paragraph'}]},
-      {title: 'entry2', thumbnail: '../media/photo2.JPG',
+      {title: 'Moaaz Joins the Team', thumbnail: '../media/photo2.JPG', 
+       date: 'September 19, 2014 23:37',
        content: [{type: 'text', value: 'one fish'},
                  {type: 'video', value: 'clip2.mp4'}, 
                  {type: 'text', value: 'two fish'}]},
-      {title: 'entry3', thumbnail: '../media/photo3.png'},
-      {title: 'entry1'},
-      {title: 'entry4', thumbnail: '../media/photo4.jpg'},
-      {title: 'entry5'},
+      {title: 'Arrival at University of Waterloo', date: 'September 19, 2014 20:50',
+       thumbnail: '../media/photo3.png'},
+      {title: 'Chillin at YYZ', time: 'September 19, 2014 19:01', content: [
+        {type: 'text', value: 'The security at customs is so intense. And terrifying. I walked up to the counter to hand my passport and froze. The guy was huge to begin with. And then someone had the great idea to put a great old vest on him. I handed him my papers. He asked why I was coming to Canada. My voice did the thing it does when my mind has decided to ride in the back seat. It was like tissue paper. Visible, but on the edge of vanishing.'}]},
+      {title: 'On the Way to the Airport', date: 'September 19, 2014 14:14',
+       thumbnail: '../media/photo4.jpg'},
+      {title: 'Packing List', content: [{type: 'text',
+                                   value: 'One towel, six tshirts (got to be prepared), two pairs of flip-flops: one fuzzy, one not, socks, an extra pair of jeans, two jackets, a scarf, a mug, a strainer, Earl\'s Garden tea, and Google glass.'}]},
     ]
   };
 });

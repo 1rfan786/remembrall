@@ -122,13 +122,55 @@ body {
           .entry-title-box {
             margin-right: 15px;
             margin-bottom: 15px;
-            height: 270px;
+            margin-top: 189px;
+            height: 81px;
             width: 480px;
             background-color: $dark-grey;
+            display: inherit;
+            opacity: .8;
+
+            .entry-title-box-text-title {
+              color: #ffffff;
+              padding: 5px 15px 0;
+              display: inherit;
+              font-family: sans-serif;
+              font-size: 2.2em;
+            }
+
+            .entry-title-box-text-time {
+              color: #ffffff;
+              padding: 0 15px 0;
+              display: inherit;
+              font-family: sans-serif;
+              font-size: 1.2em;
+            }
           } 
+          .entry-title-frame-title {
+              color: #ffffff;
+              padding: 10px 15px 0;
+              display: inherit;
+              font-family: sans-serif;
+              font-size: 2.2em;
+              width: 480px;
+          }
+          .entry-title-frame-time {
+              color: #ffffff;
+              padding: 0 15px 0;
+              display: inherit;
+              font-family: sans-serif;
+              font-size: 1.2em;
+              width: 480px;
+          }
+          .entry-title-frame-text {
+              color: #ffffff;
+              padding: 0 15px 0;
+              display: inherit;
+              font-family: sans-serif;
+              font-size: 1.5em;
+              width: 480px;
+          }
         }
     }
-   
 }
 
 
