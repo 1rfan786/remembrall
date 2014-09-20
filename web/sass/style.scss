@@ -1,6 +1,10 @@
 
 
 // Variables and Mixins
+
+$light-grey: #ebebeb;
+    
+
 @mixin border-radius($radius) {
   -webkit-border-radius: $radius;
   -moz-border-radius: $radius;
@@ -30,6 +34,23 @@
 // Styling
 
 * {
-    @include box-sizing{border-box};
+    @include box-sizing(border-box);
 }
 
+body { 
+//    @include flexbox();
+}
+
+.main-panel {
+//    @include flex(1,1,auto);
+//    height: 100px;
+//    min-height: 100%;
+//    background: $light-grey;
+}
+
+.sidebar {
+//    @include flex(0,0,200px);
+//    min-height: 100%;
+//    background: black;
+//    
+}
