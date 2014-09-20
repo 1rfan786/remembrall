@@ -1,6 +1,7 @@
 import subprocess, datetime, sys, base64, requests, os, json
 import cv2
 import pika
+from elasticsearch import Elasticsearch
 
 PROC_FPS = 0.5
 MAXDIM = 800 # Rekognition API resolution limit
@@ -11,6 +12,8 @@ channel = connection.channel()
 
 channel.queue_declare(queue='files_queue', durable=True)
 
+es = Elasticsearch()
+
 epoch = datetime.datetime.utcfromtimestamp(0)
 
 def get_start(name):
@@ -20,36 +23,39 @@ def get_start(name):
         raise Exception
     time_str = sp.stdout.read().strip().split()[-1]
     time = datetime.datetime.strptime(time_str, '%Y%m%d-%H%M%S')
-    return long((time - epoch).total_seconds()) * 1000
+    return time
 
 def process(name):
     name = os.path.join(os.getcwd(), '../run/data', name)
     start = get_start(name)
     cap = cv2.VideoCapture(name)
     fps = cap.get(cv2.cv.CV_CAP_PROP_FPS)
-    step = max(1, int(fps / PROC_FPS))
+    step = max(1, int(round(fps / PROC_FPS)))
     while cap.isOpened():
         ms = cap.get(cv2.cv.CV_CAP_PROP_POS_MSEC)
-        ms_since_epoch = start + long(ms)
+        fn = int(round(cap.get(cv2.cv.CV_CAP_PROP_POS_FRAMES)))
+        frametime = start + datetime.timedelta(0, 0, 1000 * ms)
         ret, img = cap.retrieve()
         height, width, depth = img.shape
         scaleFactor = min(float(MAXDIM) / height, float(MAXDIM) / width)
         newHeight, newWidth = int(height * scaleFactor), int(width * scaleFactor)
         img = cv2.resize(img, (newWidth, newHeight))
-        if ret:
-            data = cv2.imencode('.png', img)[1]
-            encoded = base64.encodestring(data)
-            params = {
-                'api_key': 'MlNqKOB0gvIJ9dBz',
-                'api_secret': 'CWf5gIEQqoo59fRy',
-                'jobs': 'scene_understanding_3',
-                'base64': encoded
-            }
-            resp = requests.request('POST', 'https://rekognition.com/func/api/', data = params)
-            if resp.status_code == 200:
-                content = json.loads(resp.content)
-                matches = content['scene_understanding']['matches']
-                print matches
+        data = cv2.imencode('.png', img)[1]
+        encoded = base64.encodestring(data)
+        params = {
+            'api_key': 'MlNqKOB0gvIJ9dBz',
+            'api_secret': 'CWf5gIEQqoo59fRy',
+            'jobs': 'scene_understanding_3',
+            'base64': encoded
+        }
+        resp = requests.request('POST', 'https://rekognition.com/func/api/', data = params)
+        if resp.status_code == 200:
+            content = json.loads(resp.content)
+            matches = content['scene_understanding']['matches']
+            store = {'matches': matches, 'time': frametime}
+            idn = '%s-%d' % (frametime.strftime('%Y%m%d-%H%M%S'), fn)
+            es.index(index = 'rememberall', doc_type = 'frame', id = idn, body = store)
+            print matches
         if not all(cap.grab() for i in xrange(step)):
             break
     cap.release()
