@@ -19,12 +19,16 @@ def process(name):
     cap = cv2.VideoCapture(name)
     fps = cap.get(cv2.cv.CV_CAP_PROP_FPS)
     step = max(1, int(fps / PROC_FPS))
-    while cap.isOpened() and all(cap.grab() for i in xrange(step)):
+    while cap.isOpened():
         ms = cap.get(cv2.cv.CV_CAP_PROP_POS_MSEC)
-        ms_since_epoch = start + ms
+        ms_since_epoch = start + long(ms)
         ret, img = cap.retrieve()
         if ret:
+            print ms, ms_since_epoch
             pass # do something with img
+        if not all(cap.grab() for i in xrange(step)):
+            break
+    cap.release()
 
 def main():
     process(sys.argv[1])
