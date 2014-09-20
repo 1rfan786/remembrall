@@ -17,9 +17,23 @@ app.controller('MainPanelCtrl', function($scope, testDataFactory) {
   };
 });
 
-app.controller('SideBarCtrl', function($scope, searchResultsFactory) {
+app.controller('SideBarCtrl', function($scope, $http, searchResultsFactory) {
   $scope.searchResults = searchResultsFactory.results;
-
+ 
+  $scope.search = function(keywordString, timeString) {
+    var url = ''; // TODO Build with keywordString and timeString.
+    $http.get(url).success(function(response) {
+      // TODO processing before saving, maybe?
+      searchResultsFactory.results = response;
+      $scope.searchResults = response;
+    });
+  };
+  $scope.getByTimeRange = function(timeString) {
+    var url = ''; // TODO Build with keywordString and timeString.
+    $http.get(url).success(function(response) {
+      //TODO replace shorter clip with longer clip.
+    });
+  };
 });
 
 app.factory('searchResultsFactory', function() {
