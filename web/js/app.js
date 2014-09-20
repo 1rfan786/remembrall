@@ -17,9 +17,15 @@ app.controller('MainPanelCtrl', function($scope, testDataFactory) {
   };
 });
 
-app.controller('SideBarCtrl', function($scope) {
-  $scope.feeling = 'happy';
+app.controller('SideBarCtrl', function($scope, searchResultsFactory) {
+  $scope.searchResults = searchResultsFactory.results;
 
+});
+
+app.factory('searchResultsFactory', function() {
+  return {
+    results: {} 
+  };
 });
 
 app.factory('testDataFactory', function() {
@@ -45,9 +51,6 @@ app.factory('testDataFactory', function() {
   };
 });
         
-        
-
-
 app.directive('mainpanel', function() {
   return {
     restrict: 'E',
