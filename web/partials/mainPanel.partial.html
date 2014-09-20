@@ -7,24 +7,15 @@
     
     <div class="mainpanel-content">
         <ul>
-            <li class="entry-frame" style="background-image: url(http://cdn.wonderfulengineering.com/wp-content/uploads/2014/03/high-resolution-wallpapers-25.jpg); background-size: cover">
+<!--
+                    <li class="entry-frame" data-ng-repeat="resource in savedLib">
+              <img data-ng-src="{{resource.frame}}">
             </li>
-            <li class="entry-frame">
-            </li>
-            <li class="entry-frame">
-            </li>
-            <li class="entry-frame">
-            </li>
-            <li class="entry-frame">
-            </li>
-            <li class="entry-frame">
-            </li>
-            <li class="entry-frame">
-            </li>
-            <li class="entry-frame">
+-->
+            <li class="entry-frame" data-ng-repeat="resource in savedLib" style="background-image: url({{resource.frame}}); background-size: cover;">
+<!--              <img data-ng-src="{{resource.frame}}">-->
             </li>
         </ul>
-        
     </div>
     
 </div>
