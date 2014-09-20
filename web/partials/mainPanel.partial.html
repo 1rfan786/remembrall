@@ -1,21 +1,17 @@
 
 <div data-ng-controller="MainPanelCtrl" class="main-panel">
-    <div class="mainpanel-header">
-        <h1>RememberAll</h1>
-        <a href="#"><i class="fa fa-plus"></i>New Entry</a>
-    </div>
-    
-    <div class="mainpanel-content">
-        <ul>
-<!--
-                    <li class="entry-frame" data-ng-repeat="resource in savedLib">
-              <img data-ng-src="{{resource.frame}}">
-            </li>
--->
-            <li class="entry-frame" data-ng-repeat="resource in savedLib" style="background-image: url({{resource.frame}}); background-size: cover;">
-<!--              <img data-ng-src="{{resource.frame}}">-->
-            </li>
-        </ul>
-    </div>
-    
+  <div class="mainpanel-header">
+    <h1>RememberAll</h1>
+    <a href="#"><i class="fa fa-plus"></i>New Entry</a>
+  </div>
+
+  <div class="mainpanel-content">
+    <ul>
+      <li class="entry-frame" data-ng-repeat="resource in savedLib" style="background-image: url({{resource.frame}}); background-size: cover;">
+      <img data-ng-if="notUndefined(resource.frame)" 
+      data-ng-src="{{resource.frame}}">
+      </li>
+    </ul>
+  </div>
+
 </div>

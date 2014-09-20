@@ -2,6 +2,9 @@ var app = angular.module('rememberall', []);
 
 app.controller('MainPanelCtrl', function($scope, testDataFactory) {
   $scope.savedLib = testDataFactory.savedLib;
+  $scope.notUndefined = function(toBeTested) {
+    return !(typeof toBeTested === 'undefined');
+  };
 });
 
 app.controller('SideBarCtrl', function($scope) {
