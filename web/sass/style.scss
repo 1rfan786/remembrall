@@ -1,9 +1,12 @@
 
-
+@import url(http://fonts.googleapis.com/css?family=Merriweather);
 // Variables and Mixins
 
 $light-grey: #ebebeb;
-    
+$dark-grey: #262626;
+$blue: #0079FF;
+$serif: 'Merriweather', 'Georgia', serif;    
+$sans: sans-serif;
 
 @mixin border-radius($radius) {
   -webkit-border-radius: $radius;
@@ -35,22 +38,115 @@ $light-grey: #ebebeb;
 
 * {
     @include box-sizing(border-box);
+    margin: 0;
+    padding: 0;
+    
 }
 
-body { 
-//    @include flexbox();
+body {
+    margin: 0;
+    padding: 0;
 }
+
+.view { 
+//    @include flexbox();
+//    -webkit-flex-flow: row;
+//    flex-flow: row;
+//    flex-direction: row-reverse;
+}
+
+
 
 .main-panel {
-//    @include flex(1,1,auto);
-//    height: 100px;
-//    min-height: 100%;
-//    background: $light-grey;
+//    @include flex(0,0,auto);
+//    display: inline;
+    display: flex;
+    float:left;
+    width: 75%;
+    max-height: 100%;
+//    padding: 20px;
+    background-color: #fff;
+    -webkit-flex-direction: column;
+    flex-direction: column;
+    
+    .mainpanel-header {
+        font-family: $sans;
+        padding: 20px;
+        border-bottom: 1px solid $light-grey;
+        flex: 0 0 auto;
+//        background-color: blue;
+        h1 {
+            display: inline;
+            font-family: Helvetica;
+            font-size: 1.5em;
+        } 
+        
+        a { 
+//            font-family: $sans;
+            margin-top: -5px;
+            text-decoration:none;
+            float: right;
+            padding:10px;
+            color: $blue;
+            border: 2px solid $blue;
+//            background: $blue;
+            @include border-radius(5px);
+            
+            &:hover {
+                background: $blue;
+                color: #fff;
+            }
+        }
+        
+    }
+    
+    .mainpanel-content {
+        padding: 40px;
+        flex: auto;
+        overflow-y: auto;
+        
+        .entry-frame {
+            margin-right: 15px;
+            margin-bottom: 15px;
+            width: 480px;
+            height: 270px;
+            display: inline-block;
+            background-color: $dark-grey;
+        }
+    }
+   
 }
 
+
 .sidebar {
-//    @include flex(0,0,200px);
-//    min-height: 100%;
-//    background: black;
-//    
+//    @include flex(0,0,auto);
+    display: inline;
+    float:right;
+    width: 25%;
+    min-height: 100%;
+    background: $dark-grey;
+    color: #fff;
+    font-family: $sans;
+    
+    .active {
+        color: $blue;
+    }
+    
+    .active {
+        color: $blue;
+    }
+    
+    ul { 
+        margin: 25px 0;
+    }
+    
+    li {
+        display: inline;
+        padding: 50px;
+        
+        i {
+            font-size: 1.2em;
+            margin-right: 3px;
+        }
+    }
 }

@@ -9,14 +9,14 @@ app.controller('SideBarCtrl', function($scope) {
 });
 
 
-app.directive('main-panel', function() {
+app.directive('mainpanel', function() {
   return {
     restrict: 'E',
     templateUrl: '../partials/mainPanel.partial.html'
   };
 });
 
-app.directive('side-bar', function() {
+app.directive('sidebar', function() {
   return {
     restrict: 'E',
     templateUrl: '../partials/sideBar.partial.html'
