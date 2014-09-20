@@ -1,5 +1,5 @@
 RememberAll
 ===========
 
-Made with &hearts; by Anish Athalye, Nikhil Buduma, Moaaz Sidat, and Shelby
-Pefley at Hack The North 2014.
+Made with &hearts; by Anish Athalye, Nikhil Buduma, Shelby Pefley, and Moaaz
+Sidat at Hack The North 2014.
