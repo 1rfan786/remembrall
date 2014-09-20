@@ -4,6 +4,7 @@
 
 $light-grey: #ebebeb;
 $dark-grey: #262626;
+$med-grey: hsl(0, 0%, 25%);
 $blue: #0079FF;
 $serif: 'Merriweather', 'Georgia', serif;    
 $sans: sans-serif;
@@ -184,27 +185,41 @@ body {
     color: #fff;
     font-family: $sans;
     
-    .active {
-        color: $blue;
-    }
     
     .active {
-        color: $blue;
+        border-bottom: 3px solid $blue;
+        @include border-radius(0);
     }
-    
     
     ul { 
-        margin: 25px 0;
+        margin: 0 0;
     }
     
     li {
         display: inline;
-        padding: 50px;
+        padding: 20px 50px;
         
         i {
             font-size: 1.2em;
             margin-right: 3px;
         }
+        
+        a {
+            color: #fff;
+            &:hover {
+                background-color: $med-grey;
+            }
+        }
+        
+    }
+    
+    .nav-pills > li.active > a, .nav-pills > li.active > a:hover, .nav-pills > li.active > a:focus {
+        background: transparent;
+        color: $blue;
+    }
+    
+    .nav-pills > li > a:hover {
+        background: transparent;
     }
     
     .search-content {
@@ -212,6 +227,7 @@ body {
         
         form fieldset input {
             padding: 5px;
+            color: $dark-grey;
             @include border-radius(5px);
             
             &:focus {
@@ -222,11 +238,11 @@ body {
     }
     
     .searchinput {
-        width: 300px;
+        width: 100%;
     }
     
     .searchsubmit {
-        width: 300px;
+        width: 100%;
         color: #fff;
         border: 0px;
         background-color: $blue;

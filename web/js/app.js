@@ -19,6 +19,7 @@ app.controller('MainPanelCtrl', function($scope, testDataFactory) {
 
 app.controller('SideBarCtrl', function($scope) {
   $scope.feeling = 'happy';
+
 });
 
 app.factory('testDataFactory', function() {
@@ -43,6 +44,8 @@ app.factory('testDataFactory', function() {
     ]
   };
 });
+        
+        
 
 
 app.directive('mainpanel', function() {
