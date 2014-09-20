@@ -96,7 +96,7 @@ body {
 }
 /* line 146, ../sass/style.scss */
 .sidebar ul {
-  margin: 25px 0;
+  margin: 0 0;
 }
 /* line 150, ../sass/style.scss */
 .sidebar li {
@@ -115,20 +115,21 @@ body {
 /* line 163, ../sass/style.scss */
 .sidebar .search-content form fieldset input {
   padding: 5px;
+  color: #262626;
   -webkit-border-radius: 5px;
   -moz-border-radius: 5px;
   border-radius: 5px;
 }
-/* line 167, ../sass/style.scss */
+/* line 168, ../sass/style.scss */
 .sidebar .search-content form fieldset input:focus {
   outline: none;
   border: 2px solid #0079ff;
 }
-/* line 174, ../sass/style.scss */
+/* line 175, ../sass/style.scss */
 .sidebar .searchinput {
   width: 300px;
 }
-/* line 178, ../sass/style.scss */
+/* line 179, ../sass/style.scss */
 .sidebar .searchsubmit {
   width: 300px;
   color: #fff;

@@ -144,7 +144,7 @@ body {
     
     
     ul { 
-        margin: 25px 0;
+        margin: 0 0;
     }
     
     li {
@@ -162,6 +162,7 @@ body {
         
         form fieldset input {
             padding: 5px;
+            color: $dark-grey;
             @include border-radius(5px);
             
             &:focus {

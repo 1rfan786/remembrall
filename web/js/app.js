@@ -6,6 +6,15 @@ app.controller('MainPanelCtrl', function($scope, testDataFactory) {
 
 app.controller('SideBarCtrl', function($scope) {
   $scope.feeling = 'happy';
+//    $scope.tab = 1;
+//    
+//    $scope.selectTab = function(setTab) {
+//        $scope.tab = setTab;
+//    };
+//    
+//    $scope.isSelected = function(checkTab) {
+//        return $scope.tab === checkTab;
+//    }
 });
 
 app.factory('testDataFactory', function() {
