@@ -84,6 +84,7 @@ def audio(name):
             store = {'time': frametime, 'filename': name, 'text': text}
             if text != '':
                 es.index(index = 'rememberall', doc_type = 'frame', id = idn, body = store)
+                print ' [x] Processed %s' % idn
         i += 9000
 
 def callback(ch, method, properties, body):
