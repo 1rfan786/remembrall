@@ -35,6 +35,9 @@ app.controller('JournalCtrl', function($scope, $rootScope, JournalViewFactory) {
   $scope.close = function() {
     JournalViewFactory.visible = false;
   };
+  $scope.currentEntry = function() {
+    return $rootScope.currentEntry;
+  };
 });
 
 app.controller('RememberAllCtrl', function($scope) {
