@@ -375,6 +375,12 @@ body {
             color: #fff;
             opacity: 0.8;
         }
+        &:active {
+            color: #fff;
+        }
+        &:focus {
+                outline: none;
+            }
     }
     
     .btn-save {

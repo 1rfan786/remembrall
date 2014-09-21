@@ -77,9 +77,11 @@ app.controller('SideBarCtrl', function($scope, $http, searchResultsFactory, save
     savedFactory.saved.push({title: $scope.title, url: $scope.saveDialog});
     $scope.title = '';
     $scope.saveDialog = '';
+      console.log (savedFactory.saved);
   }; 
   $scope.clickModalCancel = function() {
     $scope.saveDialog = '';
+      $scope.modalOpen = false;
   };
  
   $scope.searchClicked = function(keywordString, timeString) {
