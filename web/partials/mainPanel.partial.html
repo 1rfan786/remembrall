@@ -7,8 +7,7 @@
 
   <div class="mainpanel-content">
     <ul>
-      <span data-ng-repeat="resource in journal">
-        <li class="entry-frame" data-ng-style="coverStyle(resource.thumbnail)">
+        <li data-ng-repeat="resource in journal" class="entry-frame" data-ng-style="coverStyle(resource.thumbnail)">
           <span class="entry-title-box" data-ng-if="hasThumbnail(resource.thumbnail)">
             <div class="entry-title-box-text-title">{{resource.title}}</div>
             <div class="entry-title-box-text-time">{{resource.date}}</div>
@@ -23,7 +22,6 @@
             data-ng-if="!hasThumbnail(resource.thumbnail)">{{resource.content[0].value}}
           </div>
         </li>
-      </span>
     </ul>
   </div>
 

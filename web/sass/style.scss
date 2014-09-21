@@ -35,6 +35,47 @@ $sans: sans-serif;
   box-sizing: $sizing;
 }
 
+
+
+@mixin multiline-ellipsis($height, $lineheight, $ellipsiswidth) {
+
+$ellipsiswidth: 3em !default;
+
+	.ellipsis {
+		overflow: hidden;
+		height: $height;
+		line-height: $lineheight; }
+
+	.ellipsis:before {
+		content:"";
+		float: left;
+		width: 5px; height: $height; }
+
+	.ellipsis > *:first-child {
+		float: right;
+		width: 100%;
+		margin-left: -5px; }		
+
+	.ellipsis:after {
+		content: "\02026";
+
+		float: right; position: relative;
+		top: -25px; left: 100%; 
+		width: $ellipsiswidth; margin-left: -$ellipsiswidth;
+		padding-right: 5px;
+		
+		text-align: right;
+		background: white;
+		background: -webkit-gradient(linear, left top, right top,
+				from(rgba(255, 255, 255, 0)), to(white), color-stop(50%, white));
+			background: -moz-linear-gradient(to right, rgba(255, 255, 255, 0), white 50%, white);			
+			background: -o-linear-gradient(to right, rgba(255, 255, 255, 0), white 50%, white);
+			background: -ms-linear-gradient(to right, rgba(255, 255, 255, 0), white 50%, white);
+			background: linear-gradient(to right, rgba(255, 255, 255, 0), white 50%, white)
+	}
+
+}
+
 // Styling
 
 * {
@@ -113,6 +154,15 @@ body {
         flex: auto;
         overflow-y: auto;
         
+        li {
+            overflow: hidden;
+            cursor: pointer;
+            &:hover {
+                opacity: 0.85;    
+            }
+            
+        }
+        
         .entry-frame {
           height: 270px;
           display: inline-block;
@@ -145,6 +195,7 @@ body {
               display: inherit;
               font-family: sans-serif;
               font-size: 1.2em;
+              font-style: italic;
             }
           } 
           .entry-title-frame-title {
@@ -161,15 +212,20 @@ body {
               display: inherit;
               font-family: sans-serif;
               font-size: 1.2em;
+              font-style: italic;
               width: 480px;
           }
           .entry-title-frame-text {
               color: #ffffff;
+              margin-top: 10px;
               padding: 0 15px 0;
               display: inherit;
               font-family: sans-serif;
               font-size: 1.5em;
               width: 480px;
+              overflow: hidden;
+              white-space: nowrap;
+              text-overflow: ellipsis;
           }
         }
     }
@@ -198,7 +254,7 @@ body {
     
     li {
         display: inline;
-        padding: 20px 50px;
+        padding: 20px 40px;
         
         i {
             font-size: 1.2em;
@@ -250,12 +306,18 @@ body {
         padding: 7px;
         @include border-radius (5px);
     }
+    
+    .aside {
+        overflow: auto;
+    }
 
     .searchresult {
-        width: 90%;
+        width: 50%;
         padding: 10px 20px;
     }
     
     .searchresultcontainer {
+        height: 400px;
+        overflow-y: visible;
     }
 }

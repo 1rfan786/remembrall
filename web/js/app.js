@@ -64,7 +64,9 @@ app.factory('savedFactory', function() {
 app.factory('searchResultsFactory', function() {
   return {
     results: [{thumbnail: '../media/photo.JPG', video: 'clip.mp4'}, 
-              {thumbnail: '../media/photo2.JPG', video: 'clip2.mp4'}] 
+              {thumbnail: '../media/photo2.JPG', video: 'clip2.mp4'},
+              {thumbnail: '../media/photo.JPG', video: 'clip.mp4'},
+             ] 
   };
 });
 
