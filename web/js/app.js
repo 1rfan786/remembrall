@@ -1,4 +1,9 @@
-var app = angular.module('rememberall', []);
+var app = angular.module('rememberall', []).config(function($sceDelegateProvider) {
+      $sceDelegateProvider.resourceUrlWhitelist([
+          'self',
+          'http://localhost:5000/**'
+      ]);
+});
 
 app.controller('MainPanelCtrl', function($scope, $rootScope, 
                                          testDataFactory, JournalViewFactory) {
@@ -102,7 +107,15 @@ app.controller('SideBarCtrl', function($scope, $http, searchResultsFactory, save
       }
     }).then(function(resp) {
       var hits = resp.hits.hits;
-      console.log(hits);
+      res = [];
+      for (var i = 0; i < hits.length; i++) {
+          var fileName = hits[i]['_source']['filename'];
+          var url = 'http://localhost:5000/static/data/' + fileName;
+          res.push({thumbnail: null, video: url});
+      }
+      $scope.searchResults = res;
+      console.log($scope.searchResults);
+      $scope.$apply();
     }, function(err) {
       console.trace(err.message);
     });
