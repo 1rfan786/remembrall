@@ -332,3 +332,58 @@ body {
         }
     }
 }
+
+.modal-view {
+    position: absolute;
+    top: 0;
+    left: 0;
+    height: 100%;
+    width: 100%;
+    background: rgba(0,0,0,.7);
+    color: #fff;
+    text-align: center;
+    
+    fieldset {
+        margin: 200px auto 100px auto;
+        
+        label {
+            display: block;
+            font-size: 2em;
+            font-weight: 200;
+        }
+        .title-input {
+            @include border-radius (200px);
+            padding: 20px;
+            font-size: 1.6em;
+            width: 50%;
+            color: $dark-grey;
+            background: #fff;
+            opacity: 0.8;
+            border: 0px;
+            
+            &:focus {
+                outline: none;
+            }
+        }
+    }
+    
+    .btn {
+        width: 120px;
+        font-size: 1.2em;
+        margin: 0 10px;
+        &:hover {
+            color: #fff;
+            opacity: 0.8;
+        }
+    }
+    
+    .btn-save {
+        background-color: green;
+    }
+    
+    .btn-cancel {
+        background-color: red;
+    }
+}
+
+

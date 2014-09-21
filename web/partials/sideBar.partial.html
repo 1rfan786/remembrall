@@ -58,10 +58,18 @@
           <div class="aside" data-ng-show="tab===2">Saved Data</div>
       </section>
   </div>
-  <div data-ng-if='showModal()'>
-    <input data-ng-model="title"></input>
-    <button data-ng-click="clickModalSave()"></button>
-    <button data-ng-click="clickModalCancel()"></button>
+  <div data-ng-if='showModal()' class="modal-view">
+      <!---->
+    <div class="bg-modal"></div>
+      <fieldset>
+          <label>Enter Title</label>
+        <input type="text" data-ng-model="title" placeholder="" class="title-input">
+      </fieldset>
+    
+      <button class="btn btn-cancel" data-ng-click="clickModalCancel()">Cancel</button>
+    <button class="btn btn-save" data-ng-click="clickModalSave()" value="Save">Save</button>
+    
+      
   </div>
   <!-- put modal in this div. make sure the cancel and save buttons in your modal have my ng click expressions exactly as you see them here.-->
 </div>
