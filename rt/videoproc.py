@@ -3,6 +3,7 @@ import cv2
 import pika
 from elasticsearch import Elasticsearch
 from pydub import AudioSegment
+import tempfile
 
 
 PROC_FPS = 0.5
@@ -67,9 +68,16 @@ def audio(relative_path, file_type):
         return os.path.join(os.getcwd(), relative_path.lstrip('\/'))
     pre_audio = AudioSegment.from_file(relative_path, file_type)
     i = 0;
-    while i < len(pre_audio)
+    while i < len(pre_audio):
         curr_seg = pre_audio[i: i+9000]
-        pre_audio.export("temp.wav", format="wav")
+        f = tempfile.NamedTemporaryFile(mode="rw+b", delete=True)
+        curr_seg.export(f.name, format="wav")
+        data = f.read()
+        print len(data)
+        resp = requests.post(url='https://api.wit.ai/speech', data=data, headers={"Authorization": "Bearer BYQ2VNUDCWPSHZPYIPLTZVVEA4PZSB3Y", "Content-Type": "audio/wav"})
+        print resp.status_code
+        print resp.content
+        i += 9000
 
 
 

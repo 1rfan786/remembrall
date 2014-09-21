@@ -28,23 +28,6 @@ app.controller('SideBarCtrl', function($scope, $http, searchResultsFactory, edit
   $scope.searchClicked = function(keywordString, timeString) {
     var tildaString = keywordString.replace(/,/g, "~") + '~';
     console.log(tildaString);
-   
-    client.search({
-      index: 'rememberall',
-      type: 'frame',
-      body: {
-        query: {
-          query_string: {
-            query: tildaString
-          }
-        }
-      }
-    }).then(function(resp) {
-      var hits = resp.hits.hits;
-      console.log(hits);
-    }, function(err) {
-      console.trace(err.message);
-    });
 
     /*var url = ''; // TODO Build with keywordString and timeString.
     $http.get(url).success(function(response) {
