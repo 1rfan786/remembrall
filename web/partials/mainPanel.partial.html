@@ -1,5 +1,5 @@
-
-<div data-ng-controller="MainPanelCtrl" class="main-panel">
+<div data-ng-controller="MainPanelCtrl" class="main-panel"
+     data-ng-hide="openEntry()">
   <div class="mainpanel-header">
     <h1>RememberAll</h1>
     <a href="#"><i class="fa fa-plus"></i>New Entry</a>
@@ -7,7 +7,8 @@
 
   <div class="mainpanel-content">
     <ul>
-        <li data-ng-repeat="resource in journal" class="entry-frame" data-ng-style="coverStyle(resource.thumbnail)">
+        <li data-ng-repeat="resource in journal" class="entry-frame" 
+            data-ng-style="coverStyle(resource.thumbnail)" data-ng-click="open(resource)">
           <span class="entry-title-box" data-ng-if="hasThumbnail(resource.thumbnail)">
             <div class="entry-title-box-text-title">{{resource.title}}</div>
             <div class="entry-title-box-text-time">{{resource.date}}</div>

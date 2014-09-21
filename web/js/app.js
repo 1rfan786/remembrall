@@ -1,6 +1,6 @@
 var app = angular.module('rememberall', []);
 
-app.controller('MainPanelCtrl', function($scope, testDataFactory) {
+app.controller('MainPanelCtrl', function($scope, testDataFactory, JournalViewFactory) {
   $scope.journal = testDataFactory.journal;
 
   $scope.coverStyle = function(fileURL) {
@@ -12,8 +12,34 @@ app.controller('MainPanelCtrl', function($scope, testDataFactory) {
     }
   };
 
+  $scope.currentEntry = {};
+  $scope.open = function(entry) {
+    JournalViewFactory.visible = true;
+    $scope.currentEntry = entry;
+    console.log($scope.openEntry());
+  };
+
   $scope.hasThumbnail = function(url) {
     return !(typeof url === 'undefined');
+  };
+
+  $scope.openEntry = function() {
+    return JournalViewFactory.visible;
+  };
+});
+
+app.controller('JournalCtrl', function($scope, JournalViewFactory) {
+  $scope.openEntry = function() {
+    return JournalViewFactory.visible;
+  };
+  $scope.close = function() {
+    JournalViewFactory.visible = false;
+  };
+});
+
+app.factory('JournalViewFactory', function() {
+  return {
+    visible: false
   };
 });
 
@@ -131,5 +157,12 @@ app.directive('sidebar', function() {
   return {
     restrict: 'E',
     templateUrl: '../partials/sideBar.partial.html'
+  };
+});
+
+app.directive('journal', function() {
+  return {
+    restrict: 'E',
+    templateUrl: '../partials/journal.partial.html'
   };
 });
