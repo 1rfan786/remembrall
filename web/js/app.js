@@ -32,13 +32,13 @@ app.controller('SideBarCtrl', function($scope, $http, searchResultsFactory, save
 
   $scope.saveDialog = [];
   $scope.saveClip = function(clipURL) {
-    saveDialog.push(clipURL);
+    $scope.saveDialog.push(clipURL);
   };
   $scope.showModal = function() {
-    return saveDialog.length > 0;
+    return $scope.saveDialog.length > 0;
   };
   $scope.clickModalSave = function() {
-    savedFactory.saved.push({title: $scope.title, url: saveDialog[0]});
+    savedFactory.saved.push({title: $scope.title, url: $scope.saveDialog[0]});
     $scope.title = '';
     saveDialog.shift();
   }; 
