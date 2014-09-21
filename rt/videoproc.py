@@ -56,38 +56,41 @@ def process(name):
             content = json.loads(resp.content)
             matches = content['scene_understanding']['matches']
             store = {'matches': matches, 'time': frametime, 'filename': name}
-            idn = '%s-%d' % (frametime.strftime('%Y%m%d-%H%M%S'), fn)
+            idn = '%s-%dV' % (frametime.strftime('%Y%m%d-%H%M%S'), fn)
             es.index(index = 'rememberall', doc_type = 'frame', id = idn, body = store)
             print ' [x] Processed %s' % idn
         if not all(cap.grab() for i in xrange(step)):
             break
     cap.release()
 
-def audio(relative_path, file_type):
-    def from_cwd(relative_path):
-        return os.path.join(os.getcwd(), relative_path.lstrip('\/'))
-    pre_audio = AudioSegment.from_file(relative_path, file_type)
+def audio(name):
+    fullname = os.path.join(os.getcwd(), '../run/data', name)
+    start = get_start(fullname)
+    ft = name.split('.')[-1]
+    print fullname, ft
+    pre_audio = AudioSegment.from_file(fullname, ft)
     i = 0;
     while i < len(pre_audio):
+        frametime = start + datetime.timedelta(0, i / 1000)
+        idn = '%s-%dA' % (frametime.strftime('%Y%m%d-%H%M%S'), i / 1000)
         curr_seg = pre_audio[i: i+9000]
         f = tempfile.NamedTemporaryFile(mode="rw+b", delete=True)
         curr_seg.export(f.name, format="wav")
         data = f.read()
-        print len(data)
         resp = requests.post(url='https://api.wit.ai/speech', data=data, headers={"Authorization": "Bearer BYQ2VNUDCWPSHZPYIPLTZVVEA4PZSB3Y", "Content-Type": "audio/wav"})
-        print resp.status_code
-        print resp.content
-        es.index(index = 'rememberall', doc_type = 'frame', id = idn, body = store)
+        if resp.status_code == 200:
+            content = json.loads(resp.content)
+            text = content['_text']
+            store = {'time': frametime, 'filename': name, 'text': text}
+            if text != '':
+                es.index(index = 'rememberall', doc_type = 'frame', id = idn, body = store)
         i += 9000
-
-
-
 
 def callback(ch, method, properties, body):
     print ' [x] Received %r' % body
     process(body)
     print ' [x] Image Done'
-
+    audio(body)
     print ' [x] Audio Done'
     ch.basic_ack(delivery_tag = method.delivery_tag)
 
