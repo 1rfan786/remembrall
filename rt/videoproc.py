@@ -2,6 +2,9 @@ import subprocess, datetime, sys, base64, requests, os, json
 import cv2
 import pika
 from elasticsearch import Elasticsearch
+from pydub import AudioSegment
+import tempfile
+
 
 PROC_FPS = 0.5
 MAXDIM = 800 # Rekognition API resolution limit
@@ -60,10 +63,31 @@ def process(name):
             break
     cap.release()
 
+def audio(relative_path, file_type):
+    def from_cwd(relative_path):
+        return os.path.join(os.getcwd(), relative_path.lstrip('\/'))
+    pre_audio = AudioSegment.from_file(relative_path, file_type)
+    i = 0;
+    while i < len(pre_audio):
+        curr_seg = pre_audio[i: i+9000]
+        f = tempfile.NamedTemporaryFile(mode="rw+b", delete=True)
+        curr_seg.export(f.name, format="wav")
+        data = f.read()
+        print len(data)
+        resp = requests.post(url='https://api.wit.ai/speech', data=data, headers={"Authorization": "Bearer BYQ2VNUDCWPSHZPYIPLTZVVEA4PZSB3Y", "Content-Type": "audio/wav"})
+        print resp.status_code
+        print resp.content
+        i += 9000
+
+
+
+
 def callback(ch, method, properties, body):
     print ' [x] Received %r' % body
     process(body)
-    print ' [x] Done'
+    print ' [x] Image Done'
+
+    print ' [x] Audio Done'
     ch.basic_ack(delivery_tag = method.delivery_tag)
 
 def main():

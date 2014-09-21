@@ -24,14 +24,22 @@ app.controller('SideBarCtrl', function($scope, $http, searchResultsFactory, edit
     editorFactory.isVisible = true;
     editorFactory.openedClip = clipUrl;
   };
+
+  var client = new elasticsearch.Client({
+    host: 'localhost:9200',
+    log: 'trace'
+  });
  
-  $scope.search = function(keywordString, timeString) {
-    var url = ''; // TODO Build with keywordString and timeString.
+  $scope.searchClicked = function(keywordString, timeString) {
+    var tildaString = keywordString.replace(/,/g, "~") + '~';
+    console.log(tildaString);
+
+    /*var url = ''; // TODO Build with keywordString and timeString.
     $http.get(url).success(function(response) {
       // TODO processing before saving, maybe?
       searchResultsFactory.results = response;
       $scope.searchResults = response;
-    });
+    });*/
   };
 });
 
