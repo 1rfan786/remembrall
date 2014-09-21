@@ -17,7 +17,7 @@ app.controller('MainPanelCtrl', function($scope, testDataFactory) {
   };
 });
 
-app.controller('SideBarCtrl', function($scope, $http, searchResultsFactory, editorFactory) {
+app.controller('SideBarCtrl', function($scope, $http, searchResultsFactory, savedFactory) {
   $scope.searchResults = searchResultsFactory.results;
 
   $scope.editor = function(clipUrl) {
@@ -32,14 +32,17 @@ app.controller('SideBarCtrl', function($scope, $http, searchResultsFactory, edit
 
   $scope.saveDialog = [];
   $scope.saveClip = function(clipURL) {
-    saveDialog.push({visible: true, url: clipURL});
+    saveDialog.push(clipURL);
   };
   $scope.showModal = function() {
     return saveDialog.length > 0;
   };
   $scope.clickModalSave = function() {
+    savedFactory.saved.push({url: saveDialog[0]});
+    saveDialog.shift();
   }; 
   $scope.clickModalCancel = function() {
+    saveDialog.shift();
   };
  
   $scope.searchClicked = function(keywordString, timeString) {
@@ -68,26 +71,6 @@ app.controller('SideBarCtrl', function($scope, $http, searchResultsFactory, edit
       searchResultsFactory.results = response;
       $scope.searchResults = response;
     });*/
-  };
-});
-
-app.controller('EditorCtrl', function($scope, $http, editorFactory) {
-  $scope.closeEditor = function() {
-    editorFactory.isVisible = false;
-  };
-
-  $scope.getByTimeRange = function(timeString) {
-    var url = ''; // TODO Build with keywordString and timeString.
-    $http.get(url).success(function(response) {
-      //TODO replace shorter clip with longer clip.
-    });
-  };
-});
-
-app.factory('editorFactory', function() {
-  return {
-    isVisible: false,
-    openedClip: ''
   };
 });
 
