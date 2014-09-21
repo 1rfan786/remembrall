@@ -76,6 +76,7 @@ app.controller('SideBarCtrl', function($scope, $http, searchResultsFactory, save
   $scope.saveDialog = '';
   $scope.modalOpen = false;
   $scope.saveClip = function(clipURL) {
+    console.log('saving clip at url ' + clipURL)
     $scope.saveDialog = clipURL;
     $scope.modalOpen = true;
   };
@@ -83,9 +84,12 @@ app.controller('SideBarCtrl', function($scope, $http, searchResultsFactory, save
     return $scope.modalOpen;
   };
   $scope.clickModalSave = function() {
+    console.log('saving ' + $scope.saveDialog);
+    console.log('title: ' + $scope.title);
     savedFactory.saved.push({title: $scope.title, url: $scope.saveDialog});
     $scope.title = '';
     $scope.saveDialog = '';
+    $scope.modalOpen = false;
   }; 
   $scope.clickModalCancel = function() {
     $scope.saveDialog = '';
@@ -131,10 +135,7 @@ app.controller('SideBarCtrl', function($scope, $http, searchResultsFactory, save
 
 app.factory('savedFactory', function() {
   return {
-    saved: [{thumbnail: '../media/photo.JPG', video: 'clip.mp4'}, 
-              {thumbnail: '../media/photo2.JPG', video: 'clip2.mp4'},
-              {thumbnail: '../media/photo.JPG', video: 'clip.mp4'},
-             ] 
+    saved: [] 
   };
 });
 
