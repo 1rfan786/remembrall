@@ -31,7 +31,7 @@ app.controller('SideBarCtrl', function($scope, $http, searchResultsFactory, edit
   });
  
   $scope.searchClicked = function(keywordString, timeString) {
-    var tildaString = keywordString.replace(/,/g, "~") + '~';
+    var tildaString = keywordString.replace(/\s/g, "~ ") + '~';
     console.log(tildaString);
 
     /*var url = ''; // TODO Build with keywordString and timeString.

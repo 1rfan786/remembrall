@@ -77,6 +77,7 @@ def audio(relative_path, file_type):
         resp = requests.post(url='https://api.wit.ai/speech', data=data, headers={"Authorization": "Bearer BYQ2VNUDCWPSHZPYIPLTZVVEA4PZSB3Y", "Content-Type": "audio/wav"})
         print resp.status_code
         print resp.content
+        es.index(index = 'rememberall', doc_type = 'frame', id = idn, body = store)
         i += 9000
 
 
