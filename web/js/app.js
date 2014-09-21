@@ -1,6 +1,7 @@
 var app = angular.module('rememberall', []);
 
-app.controller('MainPanelCtrl', function($scope, testDataFactory, JournalViewFactory) {
+app.controller('MainPanelCtrl', function($scope, $rootScope, 
+                                         testDataFactory, JournalViewFactory) {
   $scope.journal = testDataFactory.journal;
 
   $scope.coverStyle = function(fileURL) {
@@ -12,11 +13,10 @@ app.controller('MainPanelCtrl', function($scope, testDataFactory, JournalViewFac
     }
   };
 
-  $scope.currentEntry = {};
   $scope.open = function(entry) {
     JournalViewFactory.visible = true;
-    $scope.currentEntry = entry;
-    console.log($scope.openEntry());
+    $rootScope.currentEntry = entry;
+    console.log($rootScope.currentEntry);
   };
 
   $scope.hasThumbnail = function(url) {
@@ -28,7 +28,7 @@ app.controller('MainPanelCtrl', function($scope, testDataFactory, JournalViewFac
   };
 });
 
-app.controller('JournalCtrl', function($scope, JournalViewFactory) {
+app.controller('JournalCtrl', function($scope, $rootScope, JournalViewFactory) {
   $scope.openEntry = function() {
     return JournalViewFactory.visible;
   };
@@ -37,9 +37,13 @@ app.controller('JournalCtrl', function($scope, JournalViewFactory) {
   };
 });
 
+app.controller('RememberAllCtrl', function($scope) {
+  $scope.currentEntry = {};
+});
+
 app.factory('JournalViewFactory', function() {
   return {
-    visible: false
+    visible: false,
   };
 });
 
@@ -60,20 +64,22 @@ app.controller('SideBarCtrl', function($scope, $http, searchResultsFactory, save
     log: 'trace'
   });
 
-  $scope.saveDialog = [];
+  $scope.saveDialog = '';
+  $scope.modalOpen = false;
   $scope.saveClip = function(clipURL) {
-    $scope.saveDialog.push(clipURL);
+    $scope.saveDialog = clipURL;
+    $scope.modalOpen = true;
   };
   $scope.showModal = function() {
-    return $scope.saveDialog.length > 0;
+    return $scope.modalOpen;
   };
   $scope.clickModalSave = function() {
-    savedFactory.saved.push({title: $scope.title, url: $scope.saveDialog[0]});
+    savedFactory.saved.push({title: $scope.title, url: $scope.saveDialog});
     $scope.title = '';
-    saveDialog.shift();
+    $scope.saveDialog = '';
   }; 
   $scope.clickModalCancel = function() {
-    saveDialog.shift();
+    $scope.saveDialog = '';
   };
  
   $scope.searchClicked = function(keywordString, timeString) {
