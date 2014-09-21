@@ -40,9 +40,18 @@
             </form>
           </div>
           <div class="searchresultcontainer">
+<!--
             <img class="searchresult" data-ng-repeat="clip in searchResults" 
                  data-ng-click="editor(clip)"
                  data-ng-src="{{clip.thumbnail}}">
+-->     
+              <div data-ng-repeat="clip in searchResults">
+              <video class="searchresult"  controls>
+                <source src='./media/clip.mp4' type='{{ media.mp4.type }}'>
+                  <p>If you're reading this, your browser doesn't support mp4</p>
+              </video>
+                  <a href class="saveresult"><i class="fa fa-floppy-o fa-2x"></i></a>
+                  </div>
           </div>
         </div>
         <div class="aside" data-ng-show="tab===2">Saved Data</div>

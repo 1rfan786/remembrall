@@ -312,12 +312,23 @@ body {
     }
 
     .searchresult {
-        width: 50%;
+        display: inline-block;
+        width: 85%;
         padding: 10px 20px;
     }
     
+    .saveresult {
+        display: inline-block;
+    }
     .searchresultcontainer {
         height: 400px;
         overflow-y: visible;
+        
+        img {
+            cursor: pointer;
+            &:hover {
+                opacity: 0.7;
+            }
+        }
     }
 }
