@@ -1,59 +1,67 @@
-<div data-ng-controller="SideBarCtrl" class="sidebar">
-    <section data-ng-init="tab = 1">
-        <ul class="nav nav-pills">
-          <li data-ng-class="{active:tab ===1}">
-            <a href data-ng-click="tab=1">
-              <i class="fa fa-search"></i>
-              Search
-            </a>
-          </li>
-          <li data-ng-class="{active:tab ===2}">
-            <a href data-ng-click="tab=2">
-              <i class="fa fa-floppy-o"></i>
-              Saved
-            </a>
-          </li>
-        </ul>
-        
-        <div class="aside" data-ng-show="tab===1">
-          <div class="search-content">
-            <form data-ng-submit="searchClicked(keywordString, timeString)">
-                <fieldset>
-                    <label>Search by Keyword:</label>
-                    <input id="keyword" 
-                           type="text" 
-                           class="searchinput" 
-                           data-ng-model="keywordString"
-                           placeholder="e.g. 'cat dead strange'">
-                </fieldset>
-                <br/>
-                <fieldset>
-                    <label>Search by date and time</label>
-                    <input id="time" 
-                           type="text" 
-                           class="searchinput" 
-                           data-ng-model="timeString"
-                           placeholder="e.g. September 20th, 2014">
-                </fieldset>
-                <br/>
-                <input type="submit" value="Search" class="searchsubmit">
-            </form>
+<div data-ng-controller="SideBarCtrl">
+  <div class="sidebar">
+      <section data-ng-init="tab = 1">
+          <ul class="nav nav-pills">
+            <li data-ng-class="{active:tab ===1}">
+              <a href data-ng-click="tab=1">
+                <i class="fa fa-search"></i>
+                Search
+              </a>
+            </li>
+            <li data-ng-class="{active:tab ===2}">
+              <a href data-ng-click="tab=2">
+                <i class="fa fa-floppy-o"></i>
+                Saved
+              </a>
+            </li>
+          </ul>
+          
+          <div class="aside" data-ng-show="tab===1">
+            <div class="search-content">
+              <form data-ng-submit="searchClicked(keywordString, timeString)">
+                  <fieldset>
+                      <label>Search by Keyword:</label>
+                      <input id="keyword" 
+                             type="text" 
+                             class="searchinput" 
+                             data-ng-model="keywordString"
+                             placeholder="e.g. 'cat dead strange'">
+                  </fieldset>
+                  <br/>
+                  <fieldset>
+                      <label>Search by date and time</label>
+                      <input id="time" 
+                             type="text" 
+                             class="searchinput" 
+                             data-ng-model="timeString"
+                             placeholder="e.g. September 20th, 2014">
+                  </fieldset>
+                  <br/>
+                  <input type="submit" value="Search" class="searchsubmit">
+              </form>
+            </div>
+            <div class="searchresultcontainer">
+  <!--
+              <img class="searchresult" data-ng-repeat="clip in searchResults" 
+                   data-ng-click="editor(clip)"
+                   data-ng-src="{{clip.thumbnail}}">
+  -->     
+                <div data-ng-repeat="clip in searchResults">
+                <video class="searchresult"  controls>
+                  <source src='./media/clip.mp4' type='{{ media.mp4.type }}'>
+                    <p>If you're reading this, your browser doesn't support mp4</p>
+                </video>
+                    <a href class="saveresult"><i class="fa fa-floppy-o fa-2x"></i></a>
+                    </div>
+            </div>
           </div>
-          <div class="searchresultcontainer">
-<!--
-            <img class="searchresult" data-ng-repeat="clip in searchResults" 
-                 data-ng-click="editor(clip)"
-                 data-ng-src="{{clip.thumbnail}}">
--->     
-              <div data-ng-repeat="clip in searchResults">
-              <video class="searchresult"  controls>
-                <source src='./media/clip.mp4' type='{{ media.mp4.type }}'>
-                  <p>If you're reading this, your browser doesn't support mp4</p>
-              </video>
-                  <a href class="saveresult"><i class="fa fa-floppy-o fa-2x"></i></a>
-                  </div>
-          </div>
-        </div>
-        <div class="aside" data-ng-show="tab===2">Saved Data</div>
-    </section>
+          <div class="aside" data-ng-show="tab===2">Saved Data</div>
+      </section>
+  </div>
+  <div data-ng-if='showModal()'>
+    <input data-ng-model="title"></input>
+    <button data-ng-click="clickModalSave()"></button>
+    <button data-ng-click="clickModalCancel()"></button>
+  </div>
+  <!-- put modal in this div. make sure the cancel and save buttons in your modal have my ng click expressions exactly as you see them here.-->
 </div>

@@ -29,6 +29,18 @@ app.controller('SideBarCtrl', function($scope, $http, searchResultsFactory, edit
     host: 'localhost:9200',
     log: 'trace'
   });
+
+  $scope.saveDialog = [];
+  $scope.saveClip = function(clipURL) {
+    saveDialog.push({visible: true, url: clipURL});
+  };
+  $scope.showModal = function() {
+    return saveDialog.length > 0;
+  };
+  $scope.clickModalSave = function() {
+  }; 
+  $scope.clickModalCancel = function() {
+  };
  
   $scope.searchClicked = function(keywordString, timeString) {
     var tildaString = keywordString.replace(/\s/g, "~ ") + '~';
