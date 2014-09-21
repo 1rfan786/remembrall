@@ -29,7 +29,7 @@ def get_start(name):
     return time
 
 def process(name):
-    fullname = os.path.join(os.getcwd(), '../run/data', name)
+    fullname = os.path.join(os.getcwd(), '../flask_app/static/data', name)
     start = get_start(fullname)
     cap = cv2.VideoCapture(fullname)
     fps = cap.get(cv2.cv.CV_CAP_PROP_FPS)
@@ -64,7 +64,7 @@ def process(name):
     cap.release()
 
 def audio(name):
-    fullname = os.path.join(os.getcwd(), '../run/data', name)
+    fullname = os.path.join(os.getcwd(), '../flask_app/static/data', name)
     start = get_start(fullname)
     ft = name.split('.')[-1]
     print fullname, ft

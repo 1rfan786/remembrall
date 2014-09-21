@@ -22,7 +22,7 @@ if not rmq_disabled:
 if rmq_disabled:
     print 'WARN: RMQ disabled'
 
-UPLOAD_FOLDER = os.getcwd() + '/../run/data'
+UPLOAD_FOLDER = os.getcwd() + '/static/data'
 
 app = Flask(__name__)
 app.config['UPLOAD_FOLDER'] = UPLOAD_FOLDER
