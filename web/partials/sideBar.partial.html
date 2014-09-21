@@ -48,7 +48,6 @@
   -->     
                 <div data-ng-repeat="clip in searchResults">
                 <video class="searchresult"  controls>
-                    <p>{{ clip['video'] }}</p>
                     <source src="{{ clip.video }}" type='{{ media.mp4.type }}'>
                     <p>If you're reading this, your browser doesn't support mp4</p>
                 </video>
