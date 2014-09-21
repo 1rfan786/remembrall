@@ -38,7 +38,8 @@ app.controller('SideBarCtrl', function($scope, $http, searchResultsFactory, save
     return saveDialog.length > 0;
   };
   $scope.clickModalSave = function() {
-    savedFactory.saved.push({url: saveDialog[0]});
+    savedFactory.saved.push({title: $scope.title, url: saveDialog[0]});
+    $scope.title = '';
     saveDialog.shift();
   }; 
   $scope.clickModalCancel = function() {
