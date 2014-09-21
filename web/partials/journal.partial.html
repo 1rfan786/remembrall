@@ -5,7 +5,26 @@
   </div>
 
   <!--content goes here-->
-  <div>
-    <button data-ng-click="close()">Close Journal Entry</button>
-    <div>{{currentEntry().title}}</div> </div>
+  <div class="journal">
+    <button class="close-journal" data-ng-click="close()">Back to All</button>
+      
+    <div class="journal-title">{{currentEntry().title}}</div>
+      <hr>
+      
+      <div class="journal-content">
+        <div class="content" ng-repeat="cont in currentEntry().content">
+            {{cont.value}}
+            <video ng-src="../media/{{cont.value}}" controls></video>
+            
+          </div>
+      </div>
+<!--
+      <div class="journal-content-para">
+          <textarea>{{currentEntry().content[1].value}}</textarea>
+      </div>
+      
+    <div class="journal-content-vid">
+          <video>{{currentEntry().content[0].value}}</>
+      </div>
+-->
 </div>
