@@ -16,7 +16,6 @@ app.controller('MainPanelCtrl', function($scope, $rootScope,
   $scope.open = function(entry) {
     JournalViewFactory.visible = true;
     $rootScope.currentEntry = entry;
-    console.log($rootScope.currentEntry);
   };
 
   $scope.hasThumbnail = function(url) {
@@ -28,7 +27,7 @@ app.controller('MainPanelCtrl', function($scope, $rootScope,
   };
 });
 
-app.controller('JournalCtrl', function($scope, $rootScope, JournalViewFactory) {
+app.controller('JournalCtrl', function($scope, $rootScope, savedFactory, JournalViewFactory) {
   $scope.openEntry = function() {
     return JournalViewFactory.visible;
   };
@@ -37,6 +36,9 @@ app.controller('JournalCtrl', function($scope, $rootScope, JournalViewFactory) {
   };
   $scope.currentEntry = function() {
     return $rootScope.currentEntry;
+  };
+  $scope.getSaved = function() {
+    return savedFactory.saved;
   };
 });
 
@@ -57,7 +59,6 @@ app.controller('SideBarCtrl', function($scope, $http, searchResultsFactory, save
     editorFactory.isVisible = true;
     editorFactory.openedClip = clipUrl;
   }; 
-
   $scope.getSaved = function() {
     return savedFactory.saved;
   };
@@ -80,7 +81,6 @@ app.controller('SideBarCtrl', function($scope, $http, searchResultsFactory, save
     savedFactory.saved.push({title: $scope.title, url: $scope.saveDialog});
     $scope.title = '';
     $scope.saveDialog = '';
-      console.log (savedFactory.saved);
   }; 
   $scope.clickModalCancel = function() {
     $scope.saveDialog = '';
