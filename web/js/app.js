@@ -17,12 +17,16 @@ app.controller('MainPanelCtrl', function($scope, testDataFactory) {
   };
 });
 
-app.controller('SideBarCtrl', function($scope, $http, searchResultsFactory, editorFactory) {
+app.controller('SideBarCtrl', function($scope, $http, searchResultsFactory, savedFactory) {
   $scope.searchResults = searchResultsFactory.results;
 
   $scope.editor = function(clipUrl) {
     editorFactory.isVisible = true;
     editorFactory.openedClip = clipUrl;
+  }; 
+
+  $scope.getSaved = function() {
+    return savedFactory.saved;
   };
 
   var client = new elasticsearch.Client({
@@ -32,14 +36,18 @@ app.controller('SideBarCtrl', function($scope, $http, searchResultsFactory, edit
 
   $scope.saveDialog = [];
   $scope.saveClip = function(clipURL) {
-    saveDialog.push({visible: true, url: clipURL});
+    $scope.saveDialog.push(clipURL);
   };
   $scope.showModal = function() {
-    return saveDialog.length > 0;
+    return $scope.saveDialog.length > 0;
   };
   $scope.clickModalSave = function() {
+    savedFactory.saved.push({title: $scope.title, url: $scope.saveDialog[0]});
+    $scope.title = '';
+    saveDialog.shift();
   }; 
   $scope.clickModalCancel = function() {
+    saveDialog.shift();
   };
  
   $scope.searchClicked = function(keywordString, timeString) {
@@ -71,29 +79,12 @@ app.controller('SideBarCtrl', function($scope, $http, searchResultsFactory, edit
   };
 });
 
-app.controller('EditorCtrl', function($scope, $http, editorFactory) {
-  $scope.closeEditor = function() {
-    editorFactory.isVisible = false;
-  };
-
-  $scope.getByTimeRange = function(timeString) {
-    var url = ''; // TODO Build with keywordString and timeString.
-    $http.get(url).success(function(response) {
-      //TODO replace shorter clip with longer clip.
-    });
-  };
-});
-
-app.factory('editorFactory', function() {
-  return {
-    isVisible: false,
-    openedClip: ''
-  };
-});
-
 app.factory('savedFactory', function() {
   return {
-    saved: [] 
+    saved: [{thumbnail: '../media/photo.JPG', video: 'clip.mp4'}, 
+              {thumbnail: '../media/photo2.JPG', video: 'clip2.mp4'},
+              {thumbnail: '../media/photo.JPG', video: 'clip.mp4'},
+             ] 
   };
 });
 
