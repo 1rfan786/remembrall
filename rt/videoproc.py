@@ -55,7 +55,8 @@ def process(name):
         if resp.status_code == 200:
             content = json.loads(resp.content)
             matches = content['scene_understanding']['matches']
-            store = {'matches': matches, 'time': frametime, 'filename': name}
+            timed = '%s#t=%f' % (name, float(ms) / 1000)
+            store = {'matches': matches, 'time': frametime, 'filename': timed}
             idn = '%s-%dV' % (frametime.strftime('%Y%m%d-%H%M%S'), fn)
             es.index(index = 'rememberall', doc_type = 'frame', id = idn, body = store)
             print ' [x] Processed %s' % idn
@@ -81,7 +82,8 @@ def audio(name):
         if resp.status_code == 200:
             content = json.loads(resp.content)
             text = content['_text']
-            store = {'time': frametime, 'filename': name, 'text': text}
+            timed = '%s#t=%f' % (name, i / 1000)
+            store = {'time': frametime, 'filename': timed, 'text': text}
             if text != '':
                 es.index(index = 'rememberall', doc_type = 'frame', id = idn, body = store)
                 print ' [x] Processed %s' % idn
