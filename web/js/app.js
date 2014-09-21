@@ -23,6 +23,10 @@ app.controller('SideBarCtrl', function($scope, $http, searchResultsFactory, save
   $scope.editor = function(clipUrl) {
     editorFactory.isVisible = true;
     editorFactory.openedClip = clipUrl;
+  }; 
+
+  $scope.getSaved = function() {
+    return savedFactory.saved;
   };
 
   var client = new elasticsearch.Client({
@@ -77,7 +81,10 @@ app.controller('SideBarCtrl', function($scope, $http, searchResultsFactory, save
 
 app.factory('savedFactory', function() {
   return {
-    saved: [] 
+    saved: [{thumbnail: '../media/photo.JPG', video: 'clip.mp4'}, 
+              {thumbnail: '../media/photo2.JPG', video: 'clip2.mp4'},
+              {thumbnail: '../media/photo.JPG', video: 'clip.mp4'},
+             ] 
   };
 });
 
