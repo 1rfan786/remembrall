@@ -24,6 +24,11 @@ app.controller('SideBarCtrl', function($scope, $http, searchResultsFactory, edit
     editorFactory.isVisible = true;
     editorFactory.openedClip = clipUrl;
   };
+
+  var client = new elasticsearch.Client({
+    host: 'localhost:9200',
+    log: 'trace'
+  });
  
   $scope.searchClicked = function(keywordString, timeString) {
     var tildaString = keywordString.replace(/,/g, "~") + '~';
