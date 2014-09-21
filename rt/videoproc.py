@@ -20,7 +20,7 @@ es = Elasticsearch()
 epoch = datetime.datetime.utcfromtimestamp(0)
 
 def get_start(name):
-    sp = subprocess.Popen(['exiftool', '-f', '-MediaCreateDate', '-d', '%Y%m%d-%H%M%S', name],
+    sp = subprocess.Popen(['exiftool', '-f', '-ContentCreateDate', '-d', '%Y%m%d-%H%M%S', name],
             stdout = subprocess.PIPE, stderr = subprocess.PIPE)
     if sp.wait() != 0:
         raise Exception
