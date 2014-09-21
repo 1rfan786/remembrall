@@ -5,7 +5,7 @@
 $light-grey: #ebebeb;
 $dark-grey: #262626;
 $med-grey: hsl(0, 0%, 25%);
-$blue: #0079FF;
+$blue: rgb(0, 200, 215);
 $serif: 'Merriweather', 'Georgia', serif;    
 $sans: sans-serif;
 
@@ -321,6 +321,9 @@ body {
     
     .saveresult {
         display: inline-block;
+        i {
+            color: $blue;
+        }
     }
     .searchresultcontainer {
         height: 400px;
@@ -396,7 +399,9 @@ body {
 
 
 .journal {
+    width: 100%;
     padding: 40px;
+    overflow: auto;
     
     .close-journal {
         float: right;
@@ -407,16 +412,49 @@ body {
         font-weight: 700;
     }
     
+    
     .journal-content-para {
-        textarea {
-            width: 100%;
-            height: 200px;
-            padding: 15px;
-            
-            &:focus {
-                outline: none;
-                border: 2px solid $blue;
-            }
+        width: 90%;
+        resize: vertical;
+        padding: 15px;
+        height: 150px;
+        overflow: scroll;
+        margin: 10px 50px; 
+        font-size: 1.6em;
+        border: 0px;
+        font-family: $serif;
+        
+        &:focus {
+            outline: none;
+            border: 2px solid $blue;
         }
     }
+    
+    .journal-content-vid {
+        margin: 10px 200px;  
+    }
+    
+    .close-journal {
+        color: $blue;
+        background: transparent; 
+        border: 0px;
+        font-size: 1.2em;
+        
+        &:hover {
+            border-bottom: 1px solid $blue;
+        }
+
+        &:focus {
+            outline: none;
+        }
+        i {
+            margin-right: 5px;
+            margin-top: 5px;
+        }
+    }
+    
+}
+
+.logo {
+    width: 120px;
 }

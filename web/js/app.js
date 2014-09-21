@@ -152,12 +152,12 @@ app.factory('testDataFactory', function() {
     journal: [
       {title: 'Anish Hard at Work', date: 'September 20, 2014 11:35', 
        thumbnail: '../media/photo.JPG',
-       content: [{type: 'video', value: 'clip.mp4'}, {type: 'text', value: 'my paragraph'}]},
-      {title: 'Moaaz Joins the Team', thumbnail: '../media/photo2.JPG', 
+       content: [{type: 'video', value: '../media/clip.mp4'}, {type: 'text', value: 'Collaboratively administrate empowered markets via plug-and-play networks. Dynamically procrastinate B2C users after installed base benefits. Dramatically visualize customer directed convergence without revolutionary ROI.'}]},
+        {title: 'Moaaz Joins the Team', thumbnail: '../media/photo2.JPG', 
        date: 'September 19, 2014 23:37',
-       content: [{type: 'text', value: 'one fish'},
-                 {type: 'video', value: 'clip2.mp4'}, 
-                 {type: 'text', value: 'two fish'}]},
+       content: [{type: 'text', value: 'Collaboratively administrate empowered markets via plug-and-play networks. Dynamically procrastinate B2C users after installed base benefits. Dramatically visualize customer directed convergence without revolutionary ROI.'},
+                 {type: 'video', value: '../media/clip2.mp4'}, 
+                 {type: 'text', value: "Hack the North is Canada's premier hackathon. It's an event where 1,000 students with different technical backgrounds and skill levels will come together, for 36 hours, form teams around a problem or idea, and collaboratively code a unique solution from scratch. With world class mentors, food, and hardware resources, you're in for an amazing time!"}]},
       {title: 'Arrival at University of Waterloo', date: 'September 19, 2014 20:50',
        thumbnail: '../media/photo3.png'},
       {title: 'Chillin at YYZ', time: 'September 19, 2014 19:01', content: [

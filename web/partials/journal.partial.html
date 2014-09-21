@@ -1,20 +1,20 @@
 <div data-ng-controller="JournalCtrl" data-ng-show="openEntry()" class="main-panel">
   <div class="mainpanel-header">
-    <h1>RememberAll</h1>
+    <img class="logo" src="../media/logo.png">
     <a href="#"><i class="fa fa-plus"></i>New Entry</a>
   </div>
 
   <!--content goes here-->
   <div class="journal">
-    <button class="close-journal" data-ng-click="close()">Back to All</button>
+    <button class="close-journal" data-ng-click="close()"><i class="fa fa-chevron-left"></i>Back to All</button>
       
     <div class="journal-title">{{currentEntry().title}}</div>
       <hr>
       
       <div class="journal-content">
         <div class="content" ng-repeat="cont in currentEntry().content">
-            {{cont.value}}
-            <video ng-src="../media/{{cont.value}}" controls></video>
+            <textarea class="journal-content-para" onkeyup="autoGrow(this);" ng-show="{{cont.type === 'text'}}">{{cont.value}}</textarea>
+            <video class="journal-content-vid" ng-show="{{cont.type === 'video'}}" src="{{cont.value}}" controls></video>
             
           </div>
       </div>
